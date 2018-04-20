@@ -1,0 +1,10 @@
+/* it is totally okay for this to be completely empty right now, add what you need */
+/* This is where the general web page styling goes, not the ArcGIS widgets, buttons, and what not. */
+/* St;ye map to have some space surrounding edge to ensure that all buttons and widgets show up correctly*/
+
+html, body, #map {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
