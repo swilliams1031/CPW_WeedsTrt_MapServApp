@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "esri/dijit/Legend",
         "esri/dijit/Scalebar",
         "esri/dijit/BasemapGallery",
+        "esri/dijit/HomeButton",
         "dojo/domReady!"
     ], 
             function (
@@ -29,7 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
              arcgisUtils,
              Legend,
              Scalebar,
-             BasemapGallery
+             BasemapGallery,
+             HomeButton
             ) 
             {ready(function () {
 
@@ -71,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     //add the basemap gallery, in this case we'll display maps from ArcGIS.com including bing maps
                     var basemapGallery = new BasemapGallery({
                         showArcGISBasemaps: true,
+                        //basemaps: "oceans",
                         map: map
                     }, "basemapGallery");
                     basemapGallery.startup();
@@ -78,6 +81,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     basemapGallery.on("error", function(msg) {
                         console.log("basemap gallery error:  ", msg);
                     });
+
+                    var home = new HomeButton({
+                        map: map
+                    }, "HomeButton");
+                    home.startup();
 
 
                 });
