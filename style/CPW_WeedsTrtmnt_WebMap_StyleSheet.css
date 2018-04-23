@@ -10,13 +10,13 @@ html, body {
 }
 
 body {
-    font-family: "Helvetica";
+    font-family: "Tahoma";
 }
 
 #header {
     background-color: #E8E8E8;
-    height: 65px;
-    margin: 5px 5px;
+    height: 10%;
+    margin: 0 0;
 }
 
 #mainWindow {
@@ -37,12 +37,27 @@ body {
 }
 
 #rightPane {
+    position:absolute;
     background-color: #E8E8E8;
-    margin: 5px;
+    margin: 0;
     width: 20%;
 }
 
 #map {
-    margin: 5px;
+    height: 90%;
+    width: 80%;
+    margin: 0;
     padding: 0;
+}
+
+#scalebar{
+   position: relative;
+    bottom: 10px;
+        
+}
+
+.esriScalebar{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

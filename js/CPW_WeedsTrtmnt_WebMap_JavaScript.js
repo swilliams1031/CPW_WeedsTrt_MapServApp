@@ -57,8 +57,9 @@ require([
           //add the scalebar
           var scalebar = new Scalebar({
             map: map,
+              scalebarStyle: "ruler",
             scalebarUnit: "english"
-          });
+          }, dojo.byId("scalebar"));
 
           //add the legend. Note that we use the utility method getLegendLayers to get
           //the layers to display in the legend from the createMap response.
