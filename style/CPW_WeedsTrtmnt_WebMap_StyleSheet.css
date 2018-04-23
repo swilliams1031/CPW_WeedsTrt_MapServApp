@@ -1,7 +1,3 @@
-/* it is totally okay for this to be completely empty right now, add what you need */
-/* This is where the general web page styling goes, not the ArcGIS widgets, buttons, and what not. */
-/* St;ye map to have some space surrounding edge to ensure that all buttons and widgets show up correctly*/
-
 html, body {
     padding: 0;
     margin: 0;
@@ -10,7 +6,7 @@ html, body {
 }
 
 body {
-    font-family: "Tahoma";
+    font-family: "Verdana"
 }
 
 #header {
@@ -41,6 +37,7 @@ body {
     background-color: #E8E8E8;
     margin: 0;
     width: 20%;
+    text-align: center;
 }
 
 #map {
@@ -51,13 +48,6 @@ body {
 }
 
 #scalebar{
-   position: relative;
+    position: relative;
     bottom: 10px;
-        
-}
-
-.esriScalebar{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
