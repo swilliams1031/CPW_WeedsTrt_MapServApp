@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
         "esri/dijit/Scalebar",
         "esri/dijit/BasemapGallery",
         "esri/dijit/HomeButton",
+        "esri/dijit/Search", 
+        "esri/InfoTemplate",
         "dojo/domReady!"
     ], 
             function (
@@ -31,7 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
              Legend,
              Scalebar,
              BasemapGallery,
-             HomeButton
+             HomeButton,
+             Search,
+             InfoTemplate
             ) 
             {ready(function () {
 
@@ -87,6 +91,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, "HomeButton");
                     home.startup();
 
+                    var search = new Search({
+                        enableButtonMode: true,
+                        enableHighlight: false,
+                        sources: [],
+                        map: map
+                    }, "search");
+
+                    //listen for the load event and set the source properties
+                    search.on("load", function () {
+
+                        var sources = search.sources;
+                        sources.push({
+                            featureLayer: new FeatureLayer ("https://services.arcgis.com/YseQBnl2jq0lrUV5/arcgis/rest/services/COParks_WeedTreat_Tracking/FeatureServer/3"),
+                            placeholder: "Park Selector",
+                            enableLabel: false,
+                            searchFields: ["PropName"],
+                            displayField: "PropName",
+                            exactMatch: false,
+                            outFields: ["*"],
+
+                            //Create an InfoTemplate and include three fields
+                            //infoTemplate: new InfoTemplate("Ecological Footprint", "Country: ${Country}</br>Rating: ${Rating}")
+
+                        });
+                        //Set the sources above to the search widget
+                        search.set("sources", sources);
+                    });
+                    search.startup();
 
                 });
 
