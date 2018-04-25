@@ -77,12 +77,26 @@ document.addEventListener('DOMContentLoaded', function() {
                         }, "legend");
                         legendDijit.startup();
 
+                        //Define new basemap layer for custom black and white imagery to aid colorblind users.
+
+                        var bwBasemapLayer = new esri.dijit.BasemapLayer ({url:"https://api.mapbox.com/styles/v1/mwill521/cjgeoh0yi000y2rqdc5paen3h/wmts?access_token=pk.eyJ1IjoibXdpbGw1MjEiLCJhIjoiY2l3aXFocWdvMDAwNTJ5cGl4cmFxaHJncSJ9.7gTnojeo33J8UVg8vXi3hA"});
+                       
+                        var bwBasemap = new esri.dijit.Basemap({
+                            layers: [bwBasemapLayer],
+                            title: "Black&White Satellite Image",
+                            thumbnailUrl: "esri/images/basemap/hybrid.jpg"
+                        });
+                        //basemaps.push(bwBasemap);
+
+
                         //add the basemap gallery, in this case we'll display maps from ArcGIS.com including bing maps
                         var basemapGallery = new BasemapGallery({
                             showArcGISBasemaps: true,
                             //basemaps: "oceans",
                             map: map
                         }, "basemapGallery");
+                        basemapGallery.add(bwBasemap);
+                        //basemapGallery.remove(oceans);
                         basemapGallery.startup();
 
                         basemapGallery.on("error", function(msg) {
