@@ -3,15 +3,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //ESRI modules to make API features function
     require([
-        "dojo/parser",
         "dojo/ready",
-        "esri/layers/FeatureLayer",
+        "dojo/parser",
         "dijit/layout/BorderContainer",
         "dijit/layout/ContentPane",
+        "dojo/_base/array",
         "dojo/dom",
-        "esri/map",
         "esri/urlUtils",
         "esri/arcgis/utils",
+        "esri/map",
+        "esri/layers/FeatureLayer",
         "esri/dijit/Legend",
         "esri/dijit/Scalebar",
         "esri/dijit/BasemapGallery",
@@ -21,15 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
         "dojo/domReady!"
     ], 
             function (
-            parser,
-             ready,
-             FeatureLayer,
+            ready,
+             parser,
              BorderContainer,
              ContentPane,
+             array,
              dom,
-             Map,
              urlUtils,
              arcgisUtils,
+             Map,
+             FeatureLayer,
              Legend,
              Scalebar,
              BasemapGallery,
@@ -88,12 +90,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
 
                         var home = new HomeButton({
+                            //theme: "HomeButton",
                             map: map
                         }, "HomeButton");
                         home.startup();
 
                         var search = new Search({
-                            enableButtonMode: true,
+                            enableButtonMode: false,
                             enableHighlight: false,
                             sources: [],
                             map: map

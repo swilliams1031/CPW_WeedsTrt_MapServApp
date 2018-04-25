@@ -2,20 +2,20 @@
 <html>
 
     <head>
-        <meta charset='utf-8' />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>CPW Parks Invasive Plant Treatment Tracking</title>
         <meta name='viewport' content='initial-scale=1, maximum-scale=1, user-scalable=no' />
         <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-
-        <!--  Internal references  -->
-        <link rel="stylesheet" href= "style/CPW_WeedsTrtmnt_WebMap_StyleSheet.css" />
-        <script src="js/CPW_WeedsTrtmnt_WebMap_JavaScript.js"></script>
 
         <!--  External references  -->
         <link rel="stylesheet" href="https://js.arcgis.com/3.24/dijit/themes/claro/claro.css">
         <link rel="stylesheet" href="https://js.arcgis.com/3.24/esri/css/esri.css">
         <!--<script src="https://js.arcgis.com/3.23/"></script>-->
         <script src="https://js.arcgis.com/3.24/" data-dojo-config="async:true"></script>
+        
+        <!--  Internal references  -->
+        <link rel="stylesheet" href= "style/CPW_WeedsTrtmnt_WebMap_StyleSheet.css" />
+        <script src="js/CPW_WeedsTrtmnt_WebMap_JavaScript.js"></script>
 
     </head>
 
@@ -48,13 +48,14 @@
 
             </div>
 
-            
+
             <div id="rightPane" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'right'">
-                <div id="legend"></div>
-                <br>
                 <div id="scalebar"></div>
+                <br>
+                <div id="legend"></div>
+
             </div>
-            
+
             <div id="search"></div>
 
         </div>
