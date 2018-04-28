@@ -115,24 +115,20 @@ body {
     border: 1px solid black;
     background-color: #E5E5E5;
 }
-
 .arcgisSearch .noValueText{
     color:darkorange;
     font-size: 14px;
     font-weight: 600;
 }
-
 /*Beginning of popup modifications*/
 .esriPopup .titlePane {
 background-color: #003F87;
 border-bottom: 1px solid #121310;
 font-weight: bold;
 }
-
 .esriPopup a {
 color: #003F87;
 }
-
 .esriPopup .contentPane,
 .esriPopup .actionsPane,
 .esriPopup .pointer,

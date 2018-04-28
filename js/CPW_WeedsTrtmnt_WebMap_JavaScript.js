@@ -77,16 +77,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         }, "legend");
                         legendDijit.startup();
 
-                        /*//Define new basemap layer for custom black and white imagery to aid colorblind users.
+                        //Define new basemap layer for custom black and white imagery to aid colorblind users.
 
                         var bwBasemapLayer = new esri.dijit.BasemapLayer ({url:"https://api.mapbox.com/styles/v1/mwill521/cjgeoh0yi000y2rqdc5paen3h/wmts?access_token=pk.eyJ1IjoibXdpbGw1MjEiLCJhIjoiY2l3aXFocWdvMDAwNTJ5cGl4cmFxaHJncSJ9.7gTnojeo33J8UVg8vXi3hA"});
-
+                       
                         var bwBasemap = new esri.dijit.Basemap({
                             layers: [bwBasemapLayer],
                             title: "Black&White Satellite Image",
-                            thumbnailUrl: "http://frccbcc.maps.arcgis.com/sharing/rest/content/items/734473baa5fa42788a5b10685ca5042d/data"//"images\Basemaps\bwBasemap_thumb.JPG"
+                            thumbnailUrl: "esri/images/basemap/hybrid.jpg"
                         });
-                        //basemaps.push(bwBasemap);*/
+                        //basemaps.push(bwBasemap);
 
 
                         //add the basemap gallery, in this case we'll display maps from ArcGIS.com including bing maps
@@ -95,16 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             //basemaps: "oceans",
                             map: map
                         }, "basemapGallery");
-                        // this will remove all the extraneous ArcGISBasemaps basemaps other than Imagery, Imagery with Labels, Streets, Topographic, USA Topo Maps, and the USGS National Map in the selector pane of the widgets
-                        basemapGallery.on("load", function () {   
-                            var baselayers = basemapGallery.basemaps.slice();
-                            for (var i = 0; i < baselayers.length; i++) {
-                                var layer = baselayers[i];
-                                if (layer.title != "USGS National Map" &&layer.title != "USA Topo Maps" &&layer.title != "Imagery with Labels" &&layer.title != "Topographic" && layer.title != "Imagery" && layer.title != "Streets") {
-                                    basemapGallery.remove(layer.id);
-                                }} 
-                        });
-
+                        basemapGallery.add(bwBasemap);
+                        //basemapGallery.remove(oceans);
                         basemapGallery.startup();
 
                         basemapGallery.on("error", function(msg) {
@@ -136,6 +128,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                 displayField: "PropName",
                                 exactMatch: false,
                                 outFields: ["*"],
+
+                                //Create an InfoTemplate and include three fields
+                                // /*example*/ infoTemplate: new InfoTemplate("Ecological Footprint", "Country: ${Country}</br>Rating: ${Rating}")
+
                             });
 
                             //Set the sources above to the search widget
