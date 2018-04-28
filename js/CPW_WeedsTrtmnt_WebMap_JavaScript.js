@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "esri/InfoTemplate",
         "dojo/domReady!"
     ], 
+            /////////Call all of the module functionality
             function (
             ready,
              parser,
@@ -44,9 +45,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 function () {
 
                     parser.parse();
+                    
+                    /////////Add the ArcGIS Online map service 
                     //if accessing webmap from a portal outside of ArcGIS Online, uncomment and replace path with portal URL
                     //arcgisUtils.arcgisUrl = "https://pathto/portal/sharing/content/items";
-                    //AGOL map id: 8809446956814e65993a7295b328b706
                     arcgisUtils.createMap("8809446956814e65993a7295b328b706", "map").then(function (response) {
                         //update the app
                         dom.byId("title").innerHTML = response.itemInfo.item.title;
@@ -61,14 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                     map.addLayer(cpwParkRoads);*/
 
-                        //add the scalebar
+                        /////////Add the scalebar
                         var scalebar = new Scalebar({
                             map: map,
                             scalebarStyle: "ruler",
                             scalebarUnit: "english"
                         }, dojo.byId("scalebar"));
 
-                        //add the legend. Note that we use the utility method getLegendLayers to get
+                        /////////Add the legend. Note that we use the utility method getLegendLayers to get
                         //the layers to display in the legend from the createMap response.
                         var legendLayers = arcgisUtils.getLegendLayers(response);
                         var legendDijit = new Legend({
@@ -89,13 +91,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         //basemaps.push(bwBasemap);*/
 
 
-                        //add the basemap gallery, in this case we'll display maps from ArcGIS.com including bing maps
+                        /////////Add the basemap gallery, in this case we'll display maps from ArcGIS.com including bing maps
                         var basemapGallery = new BasemapGallery({
                             showArcGISBasemaps: true,
                             //basemaps: "oceans",
                             map: map
                         }, "basemapGallery");
-                        // this will remove all the extraneous ArcGISBasemaps basemaps other than Imagery, Imagery with Labels, Streets, Topographic, USA Topo Maps, and the USGS National Map in the selector pane of the widgets
+                        // This will remove all the extraneous ArcGISBasemaps basemaps other than Imagery, Imagery with Labels, Streets, Topographic, USA Topo Maps, and the USGS National Map in the selector pane of the widgets
                         basemapGallery.on("load", function () {   
                             var baselayers = basemapGallery.basemaps.slice();
                             for (var i = 0; i < baselayers.length; i++) {
@@ -111,12 +113,14 @@ document.addEventListener('DOMContentLoaded', function() {
                             console.log("basemap gallery error:  ", msg);
                         });
 
+                        /////////Add the Home Button that returns to the original view.
                         var home = new HomeButton({
                             //theme: "HomeButton",
                             map: map
-                        }, "HomeButton");
+                        }, "homeButton");
                         home.startup();
 
+                        /////////Add the search widget to allow for text search to lacate a desired park.
                         var search = new Search({
                             enableButtonMode: false,
                             enableHighlight: false,
@@ -126,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         //listen for the load event and set the source properties
                         search.on("load", function () {
-
                             var sources = search.sources;
                             sources.push({
                                 featureLayer: new FeatureLayer ("https://services.arcgis.com/YseQBnl2jq0lrUV5/arcgis/rest/services/COParks_WeedTreat_Tracking/FeatureServer/3"),
@@ -137,11 +140,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                 exactMatch: false,
                                 outFields: ["*"],
                             });
-
                             //Set the sources above to the search widget
                             search.set("sources", sources);
                         });
                         search.startup();
+
                     });
                 });
 

@@ -61,7 +61,8 @@ body {
     z-Index:100;
 }
 
-#HomeButton {
+/*Beginning of home button modifications*/
+#homeButton {
     position: absolute;
     top: 95px;
     left: 20px;
@@ -75,6 +76,7 @@ body {
 .HomeButton .home:hover{
     background-color: gray;
 }
+/*End of home button modifications*/
 
 #rightPane {
     position:relative;
@@ -121,6 +123,7 @@ body {
     font-size: 14px;
     font-weight: 600;
 }
+/*End of search box modifications*/
 
 /*Beginning of popup modifications*/
 .esriPopup .titlePane {
@@ -138,6 +141,5 @@ color: #003F87;
 .esriPopup .pointer,
 .esriPopup .outerPointer {
 background-color: whitesmoke;
-}*/
-
- 
+}*/ 
+/*End of popup modifications*/
