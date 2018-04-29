@@ -51,7 +51,6 @@ body {
     margin: 2px;
     padding: 2px;
     border: none;
-    border-radius: 5px;
 }
 
 #basemaps{
@@ -59,6 +58,12 @@ body {
     left:20px;
     bottom:10px;
     z-Index:100;
+}
+
+#galleryBody{
+    width:737px; 
+    height:120px; 
+    overflow:auto;
 }
 
 /*Beginning of home button modifications*/
@@ -91,9 +96,64 @@ body {
     /*top: 5px;*/
 }
 
-#legend{
-    padding-top: 2px;
+/*#legend{
+padding-top: 2px;
+}*/
+
+/*Beginning of layer list modifications*/
+#layers{
+    padding-top: 8px;
+    background: none;
 }
+
+.esriLayerList .esriContainer {
+    background: none;
+    color: #003F87;
+    font-weight: 700;
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+}
+
+.esriLayerList .esriTabMenuVisible .esriTabMenu {
+  display: block;
+     background: none;
+}
+
+.esriLayerList .esriListExpand.esriListVisible .esriTabContainer {
+  display: block;
+}
+
+.esriLayerList .esriTabSelected {
+  display: block;
+  padding: 0 0px;
+}
+
+.esriLayerList .esriLegend {
+  margin-left: 0;
+}
+
+.esriLayerList .esriTitle {
+  font-size: 14px;
+  line-height: 16px;
+    background: none;
+}
+
+.esriLayerList .esriHasTabContent .esriLabel,
+.esriLayerList .esriHasButton .esriLabel {
+  padding-right: 6px;
+    background: none;
+}
+
+.esriLayerList .esriScaleInvisible .esriLabel {
+  color: #ccc;
+}
+
+#layersBody{
+
+    padding-right: 5px;
+    width:100%;
+}
+/*End of layer list modifications*/
 
 #search {
     display: block;
@@ -127,19 +187,19 @@ body {
 
 /*Beginning of popup modifications*/
 .esriPopup .titlePane {
-background-color: #003F87;
-border-bottom: 1px solid #121310;
-font-weight: bold;
+    background-color: #003F87;
+    border-bottom: 1px solid #121310;
+    font-weight: bold;
 }
 
 .esriPopup a {
-color: #003F87;
+    color: #003F87;
 }
 
 .esriPopup .contentPane,
 .esriPopup .actionsPane,
 .esriPopup .pointer,
 .esriPopup .outerPointer {
-background-color: whitesmoke;
+    background-color: whitesmoke;
 }*/ 
 /*End of popup modifications*/

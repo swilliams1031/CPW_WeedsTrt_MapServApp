@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "esri/arcgis/utils",
         "esri/map",
         "esri/layers/FeatureLayer",
-        "esri/dijit/Legend",
+        "esri/dijit/LayerList",
         "esri/dijit/Scalebar",
         "esri/dijit/BasemapGallery",
         "esri/dijit/HomeButton",
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
              arcgisUtils,
              Map,
              FeatureLayer,
-             Legend,
+             LayerList,
              Scalebar,
              BasemapGallery,
              HomeButton,
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 function () {
 
                     parser.parse();
-                    
+
                     /////////Add the ArcGIS Online map service 
                     //if accessing webmap from a portal outside of ArcGIS Online, uncomment and replace path with portal URL
                     //arcgisUtils.arcgisUrl = "https://pathto/portal/sharing/content/items";
@@ -70,16 +70,28 @@ document.addEventListener('DOMContentLoaded', function() {
                             scalebarUnit: "english"
                         }, dojo.byId("scalebar"));
 
-                        /////////Add the legend. Note that we use the utility method getLegendLayers to get
-                        //the layers to display in the legend from the createMap response.
+                        /*/////////Add the legend. Note that we use the utility method getLegendLayers to get
+                        //the layers to display in the legend from the createMap response.  
+                        /*OPTED FOR LAYER LIST INSTEAD.  ADD MODULES TO USE LEGEND INSTEAD. --> "esri/dijit/Legend", --> Legend,
                         var legendLayers = arcgisUtils.getLegendLayers(response);
                         var legendDijit = new Legend({
                             map: map,
                             layerInfos: legendLayers
                         }, "legend");
-                        legendDijit.startup();
+                        legendDijit.startup();*/
+                        
+                        /////////Add the layer list to toggle layers and to in place of a legend.
+                        var layerListLayers = arcgisUtils.getLayerList(response);
+                        var layerList = new LayerList({
+                            map: response.map,
+                            layerInfos: layerListLayers,
+                            showSubLayers: true, // optional, show sublayers for this layer. Defaults to the widget's 'showSubLayers' property.
+                            showLegend: true, // optional, display a legend for the layer items.
+                            layers: arcgisUtils.getLayerList(response)
+                        },"layerList");
+                        layerList.startup();
 
-                        /*//Define new basemap layer for custom black and white imagery to aid colorblind users.
+                        /*//Define new basemap layer for custom black and white imagery to aid colorblind users.  COULD NOT GET MAPBOX TILE LAYER TO PLAY NICE-WOULD NOT DISPLAY.  ABANDONED.
 
                         var bwBasemapLayer = new esri.dijit.BasemapLayer ({url:"https://api.mapbox.com/styles/v1/mwill521/cjgeoh0yi000y2rqdc5paen3h/wmts?access_token=pk.eyJ1IjoibXdpbGw1MjEiLCJhIjoiY2l3aXFocWdvMDAwNTJ5cGl4cmFxaHJncSJ9.7gTnojeo33J8UVg8vXi3hA"});
 
@@ -133,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             var sources = search.sources;
                             sources.push({
                                 featureLayer: new FeatureLayer ("https://services.arcgis.com/YseQBnl2jq0lrUV5/arcgis/rest/services/COParks_WeedTreat_Tracking/FeatureServer/3"),
-                                placeholder: "Park Selector",
+                                placeholder: "Park Search",
                                 enableLabel: false,
                                 searchFields: ["PropName"],
                                 displayField: "PropName",
